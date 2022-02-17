@@ -6,45 +6,53 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_NeoMatrix.h>
 
-#define BUTTON 14              // D5
-#define ROTARLEDPosY_PIN1  13  // D7
-#define ROTARLEDPosY_PIN2  12  // D6
-#define CLICKS_PER_STEP   2    // this number depends on your rotary encoder 
-#define MIN_POS   1
-#define MAX_POS   6
+#define STARTING_PIXEL 1
+#define BUTTON 14        // D5
+#define ROTARY_PIN1  13  // D7
+#define ROTARY_PIN2  12  // D6
+#define MIN_ENC_VAL 1
+#define MAX_ENC_VAL 6
+#define CLICKS_PER_STEP  4     
+#define START_POS   6
+#define INCREMENT   1
 #define MATRIX_WIDTH 8
 #define MATRIX_HEIGHT 8
-#define STARTING_PIXEL 1
 
-#define PIN 4            // D2
+#define PIN 4            // WEMOS D2 Pin (GPIO4)
 #define LED_COUNT 64
 
+
 // USE FOR PROGRESSIVE SQUARE
-//Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(MATRIX_WIDTH, MATRIX_HEIGHT, PIN,
-//                            NEO_MATRIX_TOP  + NEO_MATRIX_LEFT+
-//                            NEO_MATRIX_ROWS + NEO_MATRIX_PROGRESSIVE,
-//                            NEO_GRB            + NEO_KHZ800);
-                           
+Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(MATRIX_WIDTH, MATRIX_HEIGHT, PIN,
+                            NEO_MATRIX_TOP  + NEO_MATRIX_LEFT+
+                            NEO_MATRIX_ROWS + NEO_MATRIX_PROGRESSIVE,
+                            NEO_GRB            + NEO_KHZ800);
+/*                          
 // USE FOR ZIGZAG Square
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(MATRIX_WIDTH, MATRIX_HEIGHT, PIN,
                             NEO_MATRIX_TOP  + NEO_MATRIX_LEFT+
                             NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG,
                             NEO_GRB            + NEO_KHZ800);
-
+*/                            
+//****************************************************************************************************
+// Color Variables
+                            
 #define black matrix.Color(0, 0, 0)        // black
-#define rred matrix.Color(75, 0, 0)        // red
-#define bblue matrix.Color(0, 0, 75)        // blue
-#define ggreen matrix.Color(0, 75, 0)       // green                           
-#define wwhite matrix.Color(75, 75, 75)   // white
-#define dimyellow matrix.Color(30, 10, 0)    // yellow
-#define yellow matrix.Color(75, 75, 0)    // yellow
+#define rred matrix.Color(255, 0, 0)        // red
+#define bblue matrix.Color(0, 0, 255)        // blue
+#define ggreen matrix.Color(0, 255, 0)       // green                           
+#define wwhite matrix.Color(255, 188, 188)   // white
+#define dimyellow matrix.Color(75, 60, 0)    // dimyellow
+#define yellow matrix.Color(255, 100, 0)    // yellow
 #define magenta matrix.Color(75, 0, 75)   // magenta
-#define cyan matrix.Color(0, 75, 75)      // cyan                      
-#define orange matrix.Color(75, 15, 0)     // orange 
-#define gold matrix.Color(75, 50, 0)      // gold
-#define lime matrix.Color(7, 75, 10 )     // lime     
+#define cyan matrix.Color(0, 255, 255)      // cyan                      
+#define orange matrix.Color(225, 80, 0)     // orange 
+#define gold matrix.Color(180, 75, 0)      // gold
+#define lime matrix.Color(40, 200, 0)     // lime 
+#define purple matrix.Color(127, 0, 70)     // purple    
 
-unsigned int COLOR[] = {black, rred, bblue, black, dimyellow, magenta, ggreen};
+//unsigned int COLOR[] = {black, rred, bblue, black, dimyellow, magenta, ggreen};
+unsigned int COLOR[] = {black, rred, bblue, ggreen, magenta, cyan, orange, gold, lime, purple};
 //********************************************
 const byte TieGame[8] = {
   
